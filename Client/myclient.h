@@ -12,6 +12,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QCryptographicHash>
 
 class MyClient : public QWidget
 {
@@ -26,10 +27,11 @@ private:
     quint16 m_nNextBlockSize;//длина следующего, полченного от сокета, блока
     QString filter;//фильтр для поиска по директории
     QByteArray byteArrayFromFile;//считанный из файла массив байт
+    QByteArray fileHash;//хэш данных из файла
 
 private:
     QByteArray readFile(QString filePath);
-
+    QByteArray getHash(QFile file);
 private slots:
     void slotReadyRead ();
     void slotError (QAbstractSocket::SocketError);

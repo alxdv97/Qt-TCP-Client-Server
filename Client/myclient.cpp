@@ -66,9 +66,12 @@ QByteArray MyClient::readFile(QString filePath){
         return dataArray;
     }
     //int i=0;
-    while(!file.atEnd()){
-        dataArray += file.readLine();
-    }
+//    while(!file.atEnd()){
+//        dataArray += file.readLine();
+//    }
+    dataArray = file.readAll();
+    fileHash =  QCryptographicHash::hash(dataArray, QCryptographicHash::Md5);
+    qDebug() << fileHash;
     return dataArray;
 }
 
